@@ -1,0 +1,5 @@
+body { background: var(--pm-bg); color: var(--pm-text); }
+
+.stack-3 > * + * { margin-top: 12px; }
+.stack-4 > * + * { margin-top: 16px; }
+.cluster-3 { display:flex; gap:12px; align-items:center; }

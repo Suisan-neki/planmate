@@ -1,0 +1,12 @@
+:root{
+  --pm-bg:#0F1115;           /* 背景 */
+  --pm-card:#151922;         /* カード */
+  --pm-text:#E7ECF2;         /* 文字 */
+  --pm-subtext:#9BA3AE;      /* 補助文字 */
+  --pm-primary:#6C8CFF;      /* プライマリ */
+  --pm-accent:#22D1AA;       /* アクセント */
+  --pm-danger:#FF6C6C;       /* 警告 */
+  --pm-radius:16px;          /* 角丸 */
+  --pm-gap:12px;             /* 余白単位 */
+  --pm-shadow:0 8px 24px rgba(0,0,0,.35);
+}
