@@ -1,11 +1,24 @@
-import React from 'react'
-export default function Button({children, className='', ...props}: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }){
-  return (
-    <button
-      className={`px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  )
+import { ButtonHTMLAttributes } from 'react'
+
+type Variant = 'primary' | 'secondary' | 'disabled' | 'ghost'
+type Size = 'sm' | 'md' | 'lg'
+
+export default function Button(
+  { variant = 'primary', size = 'md', className = '', ...props }:
+  ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size }
+) {
+  const base = 'w-full rounded-lg text-sm font-medium transition active:translate-y-[0.5px]'
+  const paddings = size === 'sm' ? 'py-2' : size === 'lg' ? 'py-4' : 'py-3'
+  const style =
+    variant === 'primary'
+      ? 'bg-primary text-white hover:opacity-90'
+      : variant === 'secondary'
+        ? 'bg-secondary text-white hover:opacity-90'
+        : variant === 'ghost'
+          ? 'bg-transparent text-primary hover:bg-primary/10'
+          : 'bg-grey/40 text-white cursor-not-allowed'
+
+  return <button className={`${base} ${paddings} ${style} ${className}`} {...props} />
 }
+
+

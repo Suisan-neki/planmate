@@ -4,3 +4,6 @@ node_modules
 .vscode/*.log
 .env*
 
+# Cursor / MCP
+.cursor/*
+!.cursor/mcp.sample.json
