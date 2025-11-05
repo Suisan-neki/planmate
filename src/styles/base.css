@@ -1,0 +1,21 @@
+/* Figma整合のための最小ベース */
+:root { --safe-padding: 16px; }
+
+html { -webkit-text-size-adjust: 100%; }
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOSの表示差分抑制 */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* 任意のpx指定を積極利用（Tailwindの[]で） */
+.frame-mobile {
+  width: 375px; height: 812px; border-radius: 32px;
+}
+.container-safe { padding-left: var(--safe-padding); padding-right: var(--safe-padding); }
