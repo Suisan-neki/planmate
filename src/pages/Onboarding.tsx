@@ -1,38 +1,47 @@
-import { useTranslation } from 'react-i18next'
 import DeviceFrame from '@/components/layout/DeviceFrame'
-import { findAutoText } from '@/lib/autoText'
+import { useTranslation } from 'react-i18next'
 
 export default function Onboarding(){
   const { t } = useTranslation()
   return (
     <DeviceFrame>
-      <div className="absolute inset-0 p-5 text-navy">
-        <header>
-          <h1 className="text-[20px] leading-[28px] font-semibold">
-            {findAutoText({ pathIncludes: ['onboarding'], textIncludes: ['ようこそ','welcome'], fallback: t('onboarding.title') })}
-          </h1>
-          <p className="mt-1 text-[14px] leading-[22px] opacity-80">
-            {findAutoText({ pathIncludes: ['onboarding'], textIncludes: ['紹介','tour','quick'], fallback: t('onboarding.step1') })}
-          </p>
-        </header>
-
-        <div className="mt-6 grid place-items-center">
-          <img src="/assets/onboarding-1.png" alt="onboarding" className="h-[240px] w-auto object-contain" />
+      {/* 明示的に 375x812 の相対コンテナを用意（絶対座標の基準を固定） */}
+      <div data-screen="frame-812" className="relative w-[375px] h-[812px] mx-auto overflow-hidden text-navy flex flex-col">
+        {/* Top illustration */}
+        <div className="mt-[56px] flex items-center justify-center px-6">
+          <img
+            src="/assets/onboarding1-family-dog.png"
+            alt="onboarding"
+            className="h-[307px] w-[307px] object-contain"
+            draggable={false}
+          />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 grid place-items-center p-6">
-          <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-6 rounded-full bg-navy/80" />
-            <span className="h-1.5 w-2.5 rounded-full bg-navy/20" />
-            <span className="h-1.5 w-2.5 rounded-full bg-navy/20" />
+        {/* Floating card — width:327, height:266, r:30, bottom:45px（flexで下寄せ） */}
+        <div
+          data-rect30
+          className="mt-auto mb-[45px] mx-auto w-[327px] h-[266px] rounded-[30px] bg-white px-6 pt-8 relative text-center"
+          style={{ boxShadow: '0 26px 60px rgba(141,155,170,0.05)' }}
+        >
+          {/* notch */}
+          <div className="absolute -top-[17px] left-1/2 -translate-x-1/2 h-[34px] w-[108px] rounded-[17px] bg-white grid place-items-center">
+            <div className="inline-flex items-start gap-2 bg-white">
+              <span className="h-1.5 w-6 rounded-full bg-primary/80" />
+              <span className="h-1.5 w-2.5 rounded-full bg-primary/20" />
+              <span className="h-1.5 w-2.5 rounded-full bg-primary/20" />
+            </div>
           </div>
-          <div className="mt-3 flex w-full gap-2">
-            <button className="h-11 flex-1 rounded-xl border border-[var(--pm-border)] bg-[var(--pm-muted)] text-sm">
-              {findAutoText({ pathIncludes: ['onboarding'], textIncludes: ['スキップ','skip'], fallback: 'スキップ' })}
-            </button>
-            <button className="h-11 flex-1 rounded-xl bg-black text-white text-sm">
-              {findAutoText({ pathIncludes: ['onboarding'], textIncludes: ['次へ','next'], fallback: '次へ' })}
-            </button>
+
+          <h2 className="text-[18px] leading-[26px] font-semibold">{t('onboarding1.title')}</h2>
+          <p className="mt-3 text-[12px] leading-[20px] text-grey">
+            {t('onboarding1.body1')}
+            <br />
+            {t('onboarding1.body2')}
+          </p>
+
+          {/* CTA: テキストから62px下、左右80px、下32px */}
+          <div className="mt-[62px] px-[80px] pb-[32px]">
+            <button className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]">{t('onboarding1.cta')}</button>
           </div>
         </div>
       </div>

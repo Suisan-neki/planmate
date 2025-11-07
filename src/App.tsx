@@ -1,4 +1,5 @@
 // duplicate import removed (already at top)
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Splash from '@/pages/Splash'
 import Onboarding from '@/pages/Onboarding'
@@ -15,29 +16,34 @@ import EventsAfter from '@/pages/EventsAfter'
 import QuickPlanner from '@/pages/QuickPlanner'
 import Profile from '@/pages/Profile'
 import Settings from '@/pages/Settings'
+// import Design_97_427 from '@/pages/Design_97_427'
+import SignUp1 from '@/pages/SignUp1'
+import Forgot1 from '@/pages/Forgot1'
+import Forgot2 from '@/pages/Forgot2'
+import Reset1 from '@/pages/Reset1'
+import Fingerprint1 from '@/pages/Fingerprint1'
 
-type PageKey =
-  | 'splash'
-  | 'onboarding'
-  | 'onboarding2'
-  | 'onboarding3'
-  | 'login'
-  | 'signup'
-  | 'forgot'
-  | 'reset'
-  | 'dashboard'
-  | 'calendar'
-  | 'eventsPlanning'
-  | 'eventsAfter'
-  | 'quickplanner'
-  | 'profile'
-  | 'settings'
+type PageKey = string
 
 export default function App() {
   const [page, setPage] = useState<PageKey>(() => (localStorage.getItem('dev_page') as PageKey) || 'splash')
   const { i18n } = useTranslation()
+  const knownPages = new Set<PageKey>([
+    'splash','onboarding','onboarding2','onboarding3',
+    'signUp1',
+    'forgot1','forgot2',
+    'reset1',
+    'fingerprint1',
+    'home',
+    'login','signup','forgot','reset','dashboard','calendar','eventsPlanning','eventsAfter','quickplanner','profile','settings'
+  ])
+  const activePage: PageKey = knownPages.has(page) ? page : 'splash'
 
   useEffect(() => { localStorage.setItem('dev_page', page) }, [page])
+  useEffect(() => {
+    if (!knownPages.has(page)) setPage('splash')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   useEffect(() => {
     ;(window as any).__setDevPage = (p: PageKey) => setPage(p)
     return () => { try { delete (window as any).__setDevPage } catch {} }
@@ -48,7 +54,7 @@ export default function App() {
       {/* 小画面向け: 上部の横並びメニュー */}
       <DevToolbar
         className="mb-4 md:hidden"
-        page={page}
+        page={activePage}
         onChange={setPage}
         lang={i18n.language as 'ja' | 'en'}
         onLang={(lng) => i18n.changeLanguage(lng)}
@@ -56,24 +62,31 @@ export default function App() {
 
       <div className="mx-auto flex max-w-[1200px] items-start justify-center gap-6">
         <div className="shrink-0 w-[375px]">
-          {page === 'splash' && <Splash />}
-          {page === 'onboarding' && <Onboarding />}
-          {page === 'onboarding2' && <Onboarding2 />}
-          {page === 'onboarding3' && <Onboarding3 />}
-          {page === 'login' && <Login />}
-          {page === 'signup' && <SignUp />}
-          {page === 'forgot' && <Forgot />}
-          {page === 'reset' && <Reset />}
-          {page === 'dashboard' && <Dashboard />}
-          {page === 'calendar' && <Calendar />}
-          {page === 'eventsPlanning' && <EventsPlanning />}
-          {page === 'eventsAfter' && <EventsAfter />}
-          {page === 'quickplanner' && <QuickPlanner />}
-          {page === 'profile' && <Profile />}
-          {page === 'settings' && <Settings />}
+          {activePage === 'splash' && <Splash />}
+          {activePage === 'onboarding' && <Onboarding />}
+          {activePage === 'onboarding2' && <Onboarding2 />}
+          {activePage === 'onboarding3' && <Onboarding3 />}
+          {activePage === 'login' && <Login />}
+          {activePage === 'signup' && <SignUp />}
+          {activePage === 'signUp1' && <SignUp1 />}
+          
+          {activePage === 'forgot1' && <Forgot1 />}
+          {activePage === 'forgot2' && <Forgot2 />}
+          {activePage === 'reset1' && <Reset1 />}
+          {activePage === 'fingerprint1' && <Fingerprint1 />}
+          {activePage === 'home' && <Dashboard />}
+          {activePage === 'forgot' && <Forgot />}
+          {activePage === 'reset' && <Reset />}
+          {activePage === 'dashboard' && <Dashboard />}
+          {activePage === 'calendar' && <Calendar />}
+          {activePage === 'eventsPlanning' && <EventsPlanning />}
+          {activePage === 'eventsAfter' && <EventsAfter />}
+          {activePage === 'quickplanner' && <QuickPlanner />}
+          {activePage === 'profile' && <Profile />}
+          {activePage === 'settings' && <Settings />}
         </div>
         <DevSidebar
-          page={page}
+          page={activePage}
           onChange={setPage}
           lang={i18n.language as 'ja' | 'en'}
           onLang={(lng) => i18n.changeLanguage(lng)}
@@ -110,6 +123,22 @@ function DevSidebar({
       <NavButton k="onboarding2" label="Onboarding 2" />
       <NavButton k="onboarding3" label="Onboarding 3" />
       <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Sign Up</div>
+      <NavButton k="signUp1" label="Sign Up 1" />
+      
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Forgot Password</div>
+      <NavButton k="forgot1" label="Forgot 1" />
+      <NavButton k="forgot2" label="Forgot 2" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Reset Password</div>
+      <NavButton k="reset1" label="Reset 1" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Fingerprint Login</div>
+      <NavButton k="fingerprint1" label="Fingerprint 1" />
+      <div className="my-1 h-px bg-black/10" />
+      <NavButton k="home" label="Home" />
+      <div className="my-1 h-px bg-black/10" />
       <div className="text-[11px] text-black/50">Auth</div>
       <NavButton k="login" label="Login" />
       <NavButton k="signup" label="Sign Up" />
@@ -141,9 +170,6 @@ function DevSidebar({
         </button>
       </div>
 
-      <div className="my-2 h-px w-full bg-black/10" />
-      <div className="text-xs mb-1 text-black/60">Overlays</div>
-      <OverlayControls />
     </aside>
   )
 }
@@ -195,76 +221,4 @@ function DevToolbar({
   )
 }
 
-import { useEffect, useState } from 'react'
-
-function OverlayControls() {
-  const [grid, setGrid] = useState<boolean>(() => JSON.parse(localStorage.getItem('dev_grid') ?? 'false'))
-  const [gridStep, setGridStep] = useState<number>(() => Number(localStorage.getItem('dev_grid_step') ?? '8'))
-  const [gridOpacity, setGridOpacity] = useState<number>(() => Number(localStorage.getItem('dev_grid_opacity') ?? '0.25'))
-  const [img, setImg] = useState<string>(() => localStorage.getItem('dev_img_overlay') ?? '')
-  const [imgOpacity, setImgOpacity] = useState<number>(() => Number(localStorage.getItem('dev_img_opacity') ?? '0.3'))
-
-  useEffect(() => {
-    ;(window as any).__grid = grid
-    localStorage.setItem('dev_grid', JSON.stringify(grid))
-    window.dispatchEvent(new CustomEvent('dev-overlay-change'))
-  }, [grid])
-
-  useEffect(() => {
-    ;(window as any).__gridStep = gridStep
-    localStorage.setItem('dev_grid_step', String(gridStep))
-    window.dispatchEvent(new CustomEvent('dev-overlay-change'))
-  }, [gridStep])
-
-  useEffect(() => {
-    ;(window as any).__gridOpacity = gridOpacity
-    localStorage.setItem('dev_grid_opacity', String(gridOpacity))
-    window.dispatchEvent(new CustomEvent('dev-overlay-change'))
-  }, [gridOpacity])
-
-  useEffect(() => {
-    (window as any).__imgOverlay = img || undefined
-    if (img) localStorage.setItem('dev_img_overlay', img)
-    else localStorage.removeItem('dev_img_overlay')
-    window.dispatchEvent(new CustomEvent('dev-overlay-change'))
-  }, [img])
-
-  useEffect(() => {
-    (window as any).__imgOpacity = imgOpacity
-    localStorage.setItem('dev_img_opacity', String(imgOpacity))
-    window.dispatchEvent(new CustomEvent('dev-overlay-change'))
-  }, [imgOpacity])
-
-  return (
-    <div className="grid gap-2 text-xs">
-      <label className="flex items-center gap-2">
-        <input type="checkbox" checked={grid} onChange={(e) => setGrid(e.target.checked)} />
-        Baseline grid (8px)
-      </label>
-      <div className="flex items-center gap-2">
-        <span className="w-16">Grid step</span>
-        <input type="range" min={4} max={24} step={1} value={gridStep} onChange={(e) => setGridStep(Number(e.target.value))} />
-        <span>{gridStep}px</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="w-16">Grid alpha</span>
-        <input type="range" min={0} max={1} step={0.05} value={gridOpacity} onChange={(e) => setGridOpacity(Number(e.target.value))} />
-        <span>{gridOpacity.toFixed(2)}</span>
-      </div>
-      <div>
-        <div className="mb-1">Image overlay path</div>
-        <input
-          className="w-full rounded-md border border-[var(--pm-border)] px-2 py-1 text-xs outline-none"
-          placeholder="/assets/overlay.png"
-          value={img}
-          onChange={(e) => setImg(e.target.value)}
-        />
-        <div className="mt-1 flex items-center gap-2">
-          <span className="w-16">Opacity</span>
-          <input type="range" min={0} max={1} step={0.05} value={imgOpacity} onChange={(e) => setImgOpacity(Number(e.target.value))} />
-          <span>{imgOpacity.toFixed(2)}</span>
-        </div>
-      </div>
-    </div>
-  )
-}
+// OverlayControls removed

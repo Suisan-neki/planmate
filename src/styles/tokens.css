@@ -2,16 +2,29 @@
 :root{
   /* Base colors */
   --pm-navy: #2C4364;
-  --pm-text: #2C4364;      /* navy */
-  --pm-bg: #FFFFFF;        /* white */
-  --pm-card: #FFFFFF;      /* white */
-  --pm-muted: #F3F6F8;     /* light screen */
-  --pm-border: #EAEFF1;    /* light border */
-  --pm-primary: #2C4364;   /* navy */
-  --pm-secondary: #29BFC0; /* teal */
-  --pm-accent: #00C3D0;    /* accent teal */
-  --pm-warning: #F2994A;   /* orange */
-  --pm-danger: #ED6161;    /* red */
+  --pm-text: var(--fig-text, #2C4364);      /* navy */
+  --pm-bg: var(--fig-bg, #FFFFFF);          /* white */
+  --pm-card: var(--fig-card, #FFFFFF);      /* white */
+  --pm-muted: var(--fig-muted, #F3F6F8);    /* light screen */
+  --pm-border: var(--fig-border, #EAEFF1);  /* light border */
+  /* Prefer Figma variables if present (plugin/API both対応) */
+  --pm-primary: var(
+    --fig-accent,
+    var(
+      --fig-colors-primary,
+      var(
+        --fig-primary,
+        var(
+          --fig-color-primary,
+          var(--fig-colors, #2C4364)
+        )
+      )
+    )
+  );   /* navy */
+  --pm-secondary: var(--fig-accent, #29BFC0); /* teal */
+  --pm-accent: var(--fig-accent, #00C3D0);    /* accent teal */
+  --pm-warning: var(--fig-warning, #F2994A);  /* orange */
+  --pm-danger: var(--fig-danger, #ED6161);    /* red */
   --pm-orb-ring: #BFC0FAA6;
 
   /* Radii */
@@ -19,5 +32,5 @@
   --pm-radius-xl: 20px;
 
   /* Shadows */
-  --pm-shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  --pm-shadow-card: var(--fig-shadow-card, 0 4px 16px rgba(0,0,0,0.08));
 }

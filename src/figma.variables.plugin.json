@@ -1,0 +1,15 @@
+{
+  "コレクション1": {
+    "primary": {
+      "$variableValues": {
+        "Value": "#2C4364"
+      },
+      "$description": "",
+      "$codeSyntax": {},
+      "$scopes": [
+        "ALL_SCOPES"
+      ],
+      "$hiddenFromPublishing": false
+    }
+  }
+}

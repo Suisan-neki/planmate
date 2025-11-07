@@ -22,9 +22,6 @@ const srcMap: Record<IconName, string> = {
   user: '',
   mail: '',
   lock: '',
-  home: '',
-  settings: '',
-  plus: '',
 }
 
 function Inline({ name, className }: { name: IconName; className?: string }) {
@@ -82,3 +79,4 @@ export default function Icon({ name, className = '' }: { name: IconName; classNa
   if (src) return <img src={src} alt={name} className={className || 'h-5 w-5'} />
   return <Inline name={name} className={className} />
 }
+

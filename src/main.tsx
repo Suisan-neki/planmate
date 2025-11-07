@@ -4,6 +4,7 @@ import App from './App'
 import './styles/tailwind.css'
 import './styles/base.css'
 import './styles/tokens.css'
+import './styles/tokens.generated.css'
 import './i18n'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

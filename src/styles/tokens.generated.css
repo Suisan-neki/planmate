@@ -1,0 +1,15 @@
+/* Generated from Figma colors JSON (fallback when Variables JSON is unavailable) */
+:root {
+  --fig-primary: #2C4364;
+  --fig-colors: #2C4364;
+  --fig-colors-primary: #2C4364;
+  --fig-text: #2C4364;
+  --fig-bg: #FFFFFF;
+  --fig-card: #FFFFFF;
+  --fig-muted: #F3F6F8;
+  --fig-border: #EAEFF1;
+  --fig-accent: #29BFC0;
+  --fig-warning: #F2994A;
+  --fig-danger: #ED6161;
+  --fig-shadow-card: 0px 26px 80px rgba(141,155,170,0.04);
+}

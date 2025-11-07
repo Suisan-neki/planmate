@@ -16,10 +16,33 @@ async function main(){
   const token = getToken()
   if(!token){ console.error('FIGMA_API_KEY is required'); process.exit(1) }
 
-  const url = `https://api.figma.com/v1/files/${fileKey}/variables/local`
-  const res = await fetch(url, { headers: { 'X-Figma-Token': token } as any })
-  if(!res.ok){ throw new Error(`Fetch ${res.status} ${res.statusText}`) }
-  const json = await res.json()
+  // Try local variables first, then fallback to /variables (includes remotes)
+  const endpoints = [
+    `https://api.figma.com/v1/files/${fileKey}/variables/local`,
+    `https://api.figma.com/v1/files/${fileKey}/variables`,
+  ]
+
+  const headersList = [
+    { 'X-Figma-Token': token },
+    { Authorization: `Bearer ${token}` },
+  ] as any[]
+
+  let json: any | undefined
+  let lastStatus = 0
+  let lastText = ''
+  for (const url of endpoints){
+    for (const headers of headersList){
+      const res = await fetch(url, { headers } as any)
+      lastStatus = res.status
+      lastText = `${res.status} ${res.statusText}`
+      if (res.ok){ json = await res.json(); break }
+      try { lastText = await res.text() } catch {}
+    }
+    if (json) break
+  }
+  if (!json){
+    throw new Error(`Fetch ${lastStatus} ${lastText || 'Forbidden'} — ensure PAT has files:read + file_variables:read and the file is shared with the PAT account (Can view).`)
+  }
 
   fs.mkdirSync(path.dirname(out), { recursive: true })
   fs.writeFileSync(out, JSON.stringify(json, null, 2))

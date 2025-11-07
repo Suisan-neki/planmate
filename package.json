@@ -10,9 +10,17 @@
     "figma:text": "tsx scripts/figma/extract-text.ts",
     "figma:variables": "tsx scripts/figma/extract-variables.ts",
     "figma:colors": "tsx scripts/figma/extract-colors-from-file.ts",
-    "figma:variables:env": "env FIGMA_API_KEY=$(node scripts/figma/print-token.cjs) tsx scripts/figma/extract-variables.ts",
+    "figma:variables:env": "env FIGMA_API_KEY=$(node scripts/figma/print-token.cjs) node scripts/figma/extract-variables.mjs --key",
     "figma:text:env": "env FIGMA_API_KEY=$(node scripts/figma/print-token.cjs) tsx scripts/figma/extract-text.ts",
-    "figma:colors:env": "env FIGMA_API_KEY=$(node scripts/figma/print-token.cjs) tsx scripts/figma/extract-colors-from-file.ts"
+    "figma:colors:env": "env FIGMA_API_KEY=$(node scripts/figma/print-token.cjs) tsx scripts/figma/extract-colors-from-file.ts",
+    "figma:colors:apply": "tsx scripts/figma/colors-to-css.ts --in src/figma.colors.json --out src/styles/tokens.generated.css",
+    "figma:variables:apply": "tsx scripts/figma/variables-to-css.ts --in src/figma.variables.json --out src/styles/tokens.generated.css",
+    "figma:variables:plugin": "node scripts/figma/plugin-variables-to-css.mjs --in src/figma.variables.plugin.json --out src/styles/tokens.generated.css",
+    "figma:overlays:export": "node scripts/figma/export-images.mjs",
+    "figma:frames:list": "node scripts/figma/list-frames.mjs",
+    "figma:nodes:box": "node scripts/figma/get-node-geometry.mjs",
+    "figma:find": "node scripts/figma/find-nodes.mjs",
+    "screens:scaffold:page": "node scripts/dev/scaffold-from-figma.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",
