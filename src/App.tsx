@@ -22,6 +22,14 @@ import Forgot1 from '@/pages/Forgot1'
 import Forgot2 from '@/pages/Forgot2'
 import Reset1 from '@/pages/Reset1'
 import Fingerprint1 from '@/pages/Fingerprint1'
+import EventView1 from '@/pages/EventView1'
+import EventView2 from '@/pages/EventView2'
+import EventView3 from '@/pages/EventView3'
+import EventView4 from '@/pages/EventView4'
+import EventView5 from '@/pages/EventView5'
+import EventView6 from '@/pages/EventView6'
+import EventView7 from '@/pages/EventView7'
+import EventView8 from '@/pages/EventView8'
 
 type PageKey = string
 
@@ -34,6 +42,7 @@ export default function App() {
     'forgot1','forgot2',
     'reset1',
     'fingerprint1',
+    'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
     'home',
     'login','signup','forgot','reset','dashboard','calendar','eventsPlanning','eventsAfter','quickplanner','profile','settings'
   ])
@@ -74,6 +83,14 @@ export default function App() {
           {activePage === 'forgot2' && <Forgot2 />}
           {activePage === 'reset1' && <Reset1 />}
           {activePage === 'fingerprint1' && <Fingerprint1 />}
+          {activePage === 'eventView1' && <EventView1 />}
+          {activePage === 'eventView2' && <EventView2 />}
+          {activePage === 'eventView3' && <EventView3 />}
+          {activePage === 'eventView4' && <EventView4 />}
+          {activePage === 'eventView5' && <EventView5 />}
+          {activePage === 'eventView6' && <EventView6 />}
+          {activePage === 'eventView7' && <EventView7 />}
+          {activePage === 'eventView8' && <EventView8 />}
           {activePage === 'home' && <Dashboard />}
           {activePage === 'forgot' && <Forgot />}
           {activePage === 'reset' && <Reset />}
@@ -136,6 +153,16 @@ function DevSidebar({
       <div className="my-1 h-px bg-black/10" />
       <div className="text-[11px] text-black/50">Fingerprint Login</div>
       <NavButton k="fingerprint1" label="Fingerprint 1" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Event View</div>
+      <NavButton k="eventView1" label="Event View 1" />
+      <NavButton k="eventView2" label="Event View 2" />
+      <NavButton k="eventView3" label="Event View 3" />
+      <NavButton k="eventView4" label="Event View 4" />
+      <NavButton k="eventView5" label="Event View 5" />
+      <NavButton k="eventView6" label="Event View 6" />
+      <NavButton k="eventView7" label="Event View 7" />
+      <NavButton k="eventView8" label="Event View 8" />
       <div className="my-1 h-px bg-black/10" />
       <NavButton k="home" label="Home" />
       <div className="my-1 h-px bg-black/10" />
