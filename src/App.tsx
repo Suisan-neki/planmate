@@ -42,8 +42,8 @@ export default function App() {
     'forgot1','forgot2',
     'reset1',
     'fingerprint1',
-    'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
     'home',
+    'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
     'login','signup','forgot','reset','dashboard','calendar','eventsPlanning','eventsAfter','quickplanner','profile','settings'
   ])
   const activePage: PageKey = knownPages.has(page) ? page : 'splash'
@@ -83,6 +83,7 @@ export default function App() {
           {activePage === 'forgot2' && <Forgot2 />}
           {activePage === 'reset1' && <Reset1 />}
           {activePage === 'fingerprint1' && <Fingerprint1 />}
+          {activePage === 'home' && <Dashboard />}
           {activePage === 'eventView1' && <EventView1 />}
           {activePage === 'eventView2' && <EventView2 />}
           {activePage === 'eventView3' && <EventView3 />}
@@ -91,7 +92,6 @@ export default function App() {
           {activePage === 'eventView6' && <EventView6 />}
           {activePage === 'eventView7' && <EventView7 />}
           {activePage === 'eventView8' && <EventView8 />}
-          {activePage === 'home' && <Dashboard />}
           {activePage === 'forgot' && <Forgot />}
           {activePage === 'reset' && <Reset />}
           {activePage === 'dashboard' && <Dashboard />}
@@ -154,6 +154,8 @@ function DevSidebar({
       <div className="text-[11px] text-black/50">Fingerprint Login</div>
       <NavButton k="fingerprint1" label="Fingerprint 1" />
       <div className="my-1 h-px bg-black/10" />
+      <NavButton k="home" label="Home" />
+      <div className="my-1 h-px bg-black/10" />
       <div className="text-[11px] text-black/50">Event View</div>
       <NavButton k="eventView1" label="Event View 1" />
       <NavButton k="eventView2" label="Event View 2" />
@@ -163,8 +165,6 @@ function DevSidebar({
       <NavButton k="eventView6" label="Event View 6" />
       <NavButton k="eventView7" label="Event View 7" />
       <NavButton k="eventView8" label="Event View 8" />
-      <div className="my-1 h-px bg-black/10" />
-      <NavButton k="home" label="Home" />
       <div className="my-1 h-px bg-black/10" />
       <div className="text-[11px] text-black/50">Auth</div>
       <NavButton k="login" label="Login" />
