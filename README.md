@@ -1,5 +1,17 @@
 # planmate
 
+## 起動方法
+
+```bash
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
+```
+
+ブラウザで `http://localhost:5173` にアクセスするとアプリが表示されます。
+
 ```text
 planmate/
 ├─ .github/
