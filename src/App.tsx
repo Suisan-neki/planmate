@@ -8,6 +8,14 @@ import Onboarding3 from '@/pages/Onboarding3'
 import Dashboard from '@/pages/Dashboard'
 import AfterEvent1 from '@/pages/AfterEvent1'
 import AfterEvent2 from '@/pages/AfterEvent2'
+import CalendarView1 from '@/pages/CalendarView1'
+import CalendarView2 from '@/pages/CalendarView2'
+import CalendarView3 from '@/pages/CalendarView3'
+import QuickPlannerButton1 from '@/pages/QuickPlannerButton1'
+import QuickPlannerButton2 from '@/pages/QuickPlannerButton2'
+import ProfilePersonalSettingView1 from '@/pages/ProfilePersonalSettingView1'
+import ProjectsYouAreIn1 from '@/pages/ProjectsYouAreIn1'
+import ProjectsYouAreIn2 from '@/pages/ProjectsYouAreIn2'
 // import Design_97_427 from '@/pages/Design_97_427'
 import SignUp1 from '@/pages/SignUp1'
 import Forgot1 from '@/pages/Forgot1'
@@ -46,7 +54,11 @@ export default function App() {
     'profileSetting1','profileSetting2','profileSetting3','profileSetting4','profileSetting5','profileSetting6','profileSetting7','profileSetting8','profileSetting9',
     'dashboard',
     'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
-    'afterEvent1','afterEvent2'
+    'afterEvent1','afterEvent2',
+    'calendarView1','calendarView2','calendarView3',
+    'quickPlannerButton1','quickPlannerButton2',
+    'profilePersonalSettingView1',
+    'projectsYouAreIn1','projectsYouAreIn2'
   ])
   const activePage: PageKey = knownPages.has(page) ? page : 'splash'
 
@@ -103,6 +115,14 @@ export default function App() {
           {activePage === 'eventView8' && <EventView8 />}
           {activePage === 'afterEvent1' && <AfterEvent1 />}
           {activePage === 'afterEvent2' && <AfterEvent2 />}
+          {activePage === 'calendarView1' && <CalendarView1 />}
+          {activePage === 'calendarView2' && <CalendarView2 />}
+          {activePage === 'calendarView3' && <CalendarView3 />}
+          {activePage === 'quickPlannerButton1' && <QuickPlannerButton1 />}
+          {activePage === 'quickPlannerButton2' && <QuickPlannerButton2 />}
+          {activePage === 'profilePersonalSettingView1' && <ProfilePersonalSettingView1 />}
+          {activePage === 'projectsYouAreIn1' && <ProjectsYouAreIn1 />}
+          {activePage === 'projectsYouAreIn2' && <ProjectsYouAreIn2 />}
         </div>
         <DevSidebar
           page={activePage}
@@ -183,6 +203,22 @@ function DevSidebar({
       <div className="text-[11px] text-black/50">After Event</div>
       <NavButton k="afterEvent1" label="After Event 1" />
       <NavButton k="afterEvent2" label="After Event 2" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Calendar View</div>
+      <NavButton k="calendarView1" label="Calendar View 1" />
+      <NavButton k="calendarView2" label="Calendar View 2" />
+      <NavButton k="calendarView3" label="Calendar View 3" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Quick Planner Button</div>
+      <NavButton k="quickPlannerButton1" label="Quick Planner Button 1" />
+      <NavButton k="quickPlannerButton2" label="Quick Planner Button 2" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Profile Personal Setting View</div>
+      <NavButton k="profilePersonalSettingView1" label="Profile Personal Setting View 1" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">Projects You Are In (EN only)</div>
+      <NavButton k="projectsYouAreIn1" label="Projects You Are In 1" />
+      <NavButton k="projectsYouAreIn2" label="Projects You Are In 2" />
       <div className="my-2 h-px w-full bg-black/10" />
       <div className="text-xs mb-1 text-black/60">Language</div>
       <div className="flex overflow-hidden rounded-md border border-[var(--pm-border)]">

@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 13">
+<circle id="Ellipse 29" cx="31.915" cy="31.915" r="31.915" fill="var(--fill-0, #2C4364)" fill-opacity="0.1"/>
+<circle id="Ellipse 28" cx="31.9142" cy="31.915" r="23.2109" fill="var(--fill-0, #2C4364)"/>
+<path id="Vector (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M31.9141 21.2767C32.9509 21.2767 33.7914 22.1172 33.7914 23.154V30.0376H40.6751C41.7119 30.0376 42.5524 30.8782 42.5524 31.915C42.5524 32.9518 41.7119 33.7923 40.6751 33.7923H33.7914V40.676C33.7914 41.7128 32.9509 42.5533 31.9141 42.5533C30.8772 42.5533 30.0367 41.7128 30.0367 40.676V33.7923H23.1531C22.1163 33.7923 21.2757 32.9518 21.2757 31.915C21.2757 30.8782 22.1163 30.0376 23.1531 30.0376H30.0367V23.154C30.0367 22.1172 30.8772 21.2767 31.9141 21.2767Z" fill="var(--fill-0, white)"/>
+</g>
+</svg>

@@ -6,6 +6,7 @@ type IconName =
   | 'close'
   | 'arrow'
   | 'chevron-down'
+  | 'chevron-right'
   | 'user'
   | 'mail'
   | 'lock'
@@ -70,6 +71,13 @@ function Inline({ name, className }: { name: IconName; className?: string }) {
     return (
       <svg viewBox="0 0 24 24" fill="none" className={className || 'h-5 w-5'}>
         <path d="M12 5v14M5 12h14" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    )
+  }
+  if (name === 'chevron-right') {
+    return (
+      <svg viewBox="0 0 15 15" fill="none" className={className || 'h-[15px] w-[15px]'} style={{ flexShrink: 0, aspectRatio: '1/1' }}>
+        <path d="M5.625 3.125L10 7.5L5.625 11.875" stroke="#969FAB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     )
   }
