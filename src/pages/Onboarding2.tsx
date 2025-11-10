@@ -7,13 +7,18 @@ export default function Onboarding2(){
     <DeviceFrame>
       <div className="relative w-[375px] h-[812px] mx-auto overflow-hidden text-navy flex flex-col">
         {/* Top illustration */}
-        <div className="mt-[56px] flex items-center justify-center px-6">
-          <img src="/assets/onboarding-2.png" alt="onboarding" className="h-[240px] w-auto object-contain" />
+        <div className="mt-[111px] flex items-center justify-center">
+          <img
+            src="/assets/onboarding2の画像.png"
+            alt="onboarding"
+            className="h-[307px] w-[307px] object-contain"
+            draggable={false}
+          />
         </div>
 
         {/* Floating card — duplicate of onboarding1 */}
         <div
-          className="mt-auto mb-[45px] mx-auto w-[327px] h-[266px] rounded-[30px] bg-white px-6 pt-8 relative text-center"
+          className="mt-auto mb-[75px] mx-auto w-[327px] h-[249px] rounded-[30px] bg-white px-6 pt-8 relative text-center"
           style={{ boxShadow: '0 26px 60px rgba(141,155,170,0.05)' }}
         >
           {/* notch */}
@@ -32,7 +37,7 @@ export default function Onboarding2(){
             {t('onboarding2.body2')}
           </p>
 
-          <div className="mt-[62px] px-[80px] pb-[32px]">
+          <div className="mt-[62px] px-[80px] pb-[15px]">
             <button className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]">{t('onboarding2.cta')}</button>
           </div>
         </div>
