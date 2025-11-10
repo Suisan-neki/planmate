@@ -5,23 +5,24 @@ import Splash from '@/pages/Splash'
 import Onboarding from '@/pages/Onboarding'
 import Onboarding2 from '@/pages/Onboarding2'
 import Onboarding3 from '@/pages/Onboarding3'
-import Login from '@/pages/Login'
-import SignUp from '@/pages/SignUp'
-import Forgot from '@/pages/Forgot'
-import Reset from '@/pages/Reset'
 import Dashboard from '@/pages/Dashboard'
-import Calendar from '@/pages/Calendar'
-import EventsPlanning from '@/pages/EventsPlanning'
-import EventsAfter from '@/pages/EventsAfter'
-import QuickPlanner from '@/pages/QuickPlanner'
-import Profile from '@/pages/Profile'
-import Settings from '@/pages/Settings'
+import AfterEvent1 from '@/pages/AfterEvent1'
+import AfterEvent2 from '@/pages/AfterEvent2'
 // import Design_97_427 from '@/pages/Design_97_427'
 import SignUp1 from '@/pages/SignUp1'
 import Forgot1 from '@/pages/Forgot1'
 import Forgot2 from '@/pages/Forgot2'
 import Reset1 from '@/pages/Reset1'
 import Fingerprint1 from '@/pages/Fingerprint1'
+import ProfileSetting1 from '@/pages/ProfileSetting1'
+import ProfileSetting2 from '@/pages/ProfileSetting2'
+import ProfileSetting3 from '@/pages/ProfileSetting3'
+import ProfileSetting4 from '@/pages/ProfileSetting4'
+import ProfileSetting5 from '@/pages/ProfileSetting5'
+import ProfileSetting6 from '@/pages/ProfileSetting6'
+import ProfileSetting7 from '@/pages/ProfileSetting7'
+import ProfileSetting8 from '@/pages/ProfileSetting8'
+import ProfileSetting9 from '@/pages/ProfileSetting9'
 import EventView1 from '@/pages/EventView1'
 import EventView2 from '@/pages/EventView2'
 import EventView3 from '@/pages/EventView3'
@@ -42,9 +43,10 @@ export default function App() {
     'forgot1','forgot2',
     'reset1',
     'fingerprint1',
-    'home',
+    'profileSetting1','profileSetting2','profileSetting3','profileSetting4','profileSetting5','profileSetting6','profileSetting7','profileSetting8','profileSetting9',
+    'dashboard',
     'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
-    'login','signup','forgot','reset','dashboard','calendar','eventsPlanning','eventsAfter','quickplanner','profile','settings'
+    'afterEvent1','afterEvent2'
   ])
   const activePage: PageKey = knownPages.has(page) ? page : 'splash'
 
@@ -75,15 +77,22 @@ export default function App() {
           {activePage === 'onboarding' && <Onboarding />}
           {activePage === 'onboarding2' && <Onboarding2 />}
           {activePage === 'onboarding3' && <Onboarding3 />}
-          {activePage === 'login' && <Login />}
-          {activePage === 'signup' && <SignUp />}
           {activePage === 'signUp1' && <SignUp1 />}
           
           {activePage === 'forgot1' && <Forgot1 />}
           {activePage === 'forgot2' && <Forgot2 />}
           {activePage === 'reset1' && <Reset1 />}
           {activePage === 'fingerprint1' && <Fingerprint1 />}
-          {activePage === 'home' && <Dashboard />}
+          {activePage === 'profileSetting1' && <ProfileSetting1 />}
+          {activePage === 'profileSetting2' && <ProfileSetting2 />}
+          {activePage === 'profileSetting3' && <ProfileSetting3 />}
+          {activePage === 'profileSetting4' && <ProfileSetting4 />}
+          {activePage === 'profileSetting5' && <ProfileSetting5 />}
+          {activePage === 'profileSetting6' && <ProfileSetting6 />}
+          {activePage === 'profileSetting7' && <ProfileSetting7 />}
+          {activePage === 'profileSetting8' && <ProfileSetting8 />}
+          {activePage === 'profileSetting9' && <ProfileSetting9 />}
+          {activePage === 'dashboard' && <Dashboard />}
           {activePage === 'eventView1' && <EventView1 />}
           {activePage === 'eventView2' && <EventView2 />}
           {activePage === 'eventView3' && <EventView3 />}
@@ -92,15 +101,8 @@ export default function App() {
           {activePage === 'eventView6' && <EventView6 />}
           {activePage === 'eventView7' && <EventView7 />}
           {activePage === 'eventView8' && <EventView8 />}
-          {activePage === 'forgot' && <Forgot />}
-          {activePage === 'reset' && <Reset />}
-          {activePage === 'dashboard' && <Dashboard />}
-          {activePage === 'calendar' && <Calendar />}
-          {activePage === 'eventsPlanning' && <EventsPlanning />}
-          {activePage === 'eventsAfter' && <EventsAfter />}
-          {activePage === 'quickplanner' && <QuickPlanner />}
-          {activePage === 'profile' && <Profile />}
-          {activePage === 'settings' && <Settings />}
+          {activePage === 'afterEvent1' && <AfterEvent1 />}
+          {activePage === 'afterEvent2' && <AfterEvent2 />}
         </div>
         <DevSidebar
           page={activePage}
@@ -154,7 +156,19 @@ function DevSidebar({
       <div className="text-[11px] text-black/50">Fingerprint Login</div>
       <NavButton k="fingerprint1" label="Fingerprint 1" />
       <div className="my-1 h-px bg-black/10" />
-      <NavButton k="home" label="Home" />
+      <div className="text-[11px] text-black/50">Profile Setting</div>
+      <NavButton k="profileSetting1" label="Profile Setting 1" />
+      <NavButton k="profileSetting2" label="Profile Setting 2" />
+      <NavButton k="profileSetting3" label="Profile Setting 3" />
+      <NavButton k="profileSetting4" label="Profile Setting 4" />
+      <NavButton k="profileSetting5" label="Profile Setting 5" />
+      <NavButton k="profileSetting6" label="Profile Setting 6" />
+      <NavButton k="profileSetting7" label="Profile Setting 7" />
+      <NavButton k="profileSetting8" label="Profile Setting 8" />
+      <NavButton k="profileSetting9" label="Profile Setting 9" />
+      <div className="my-1 h-px bg-black/10" />
+      <div className="text-[11px] text-black/50">App</div>
+      <NavButton k="dashboard" label="Home" />
       <div className="my-1 h-px bg-black/10" />
       <div className="text-[11px] text-black/50">Event View</div>
       <NavButton k="eventView1" label="Event View 1" />
@@ -166,20 +180,9 @@ function DevSidebar({
       <NavButton k="eventView7" label="Event View 7" />
       <NavButton k="eventView8" label="Event View 8" />
       <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Auth</div>
-      <NavButton k="login" label="Login" />
-      <NavButton k="signup" label="Sign Up" />
-      <NavButton k="forgot" label="Forgot" />
-      <NavButton k="reset" label="Reset" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">App</div>
-      <NavButton k="dashboard" label="Home" />
-      <NavButton k="calendar" label="Calendar" />
-      <NavButton k="eventsPlanning" label="Event Planning" />
-      <NavButton k="eventsAfter" label="Event After" />
-      <NavButton k="quickplanner" label="Quick Planner" />
-      <NavButton k="profile" label="Profile" />
-      <NavButton k="settings" label="Settings" />
+      <div className="text-[11px] text-black/50">After Event</div>
+      <NavButton k="afterEvent1" label="After Event 1" />
+      <NavButton k="afterEvent2" label="After Event 2" />
       <div className="my-2 h-px w-full bg-black/10" />
       <div className="text-xs mb-1 text-black/60">Language</div>
       <div className="flex overflow-hidden rounded-md border border-[var(--pm-border)]">
@@ -226,9 +229,7 @@ function DevToolbar({
     <div className={`flex items-center gap-2 overflow-x-auto rounded-xl border border-[var(--pm-border)] bg-white/90 p-2 shadow-sm backdrop-blur ${className}`}>
       <Tab k="splash" label="Splash" />
       <Tab k="onboarding" label="Onboarding" />
-      <Tab k="login" label="Login" />
       <Tab k="dashboard" label="Dashboard" />
-      <Tab k="settings" label="Settings" />
       <div className="mx-2 h-4 w-px bg-black/10" />
       <div className="flex overflow-hidden rounded-md border border-[var(--pm-border)]">
         <button

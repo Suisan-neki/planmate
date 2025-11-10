@@ -1,0 +1,142 @@
+import DeviceFrame from '@/components/layout/DeviceFrame'
+import { useState } from 'react'
+
+export default function ProfileSetting5() {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+
+  const toggleOption = (option: string) => {
+    setSelectedOptions((prev) =>
+      prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
+    )
+  }
+
+  return (
+    <DeviceFrame hideHomeIndicator>
+      <div
+        className="relative w-[375px] h-[812px] mx-auto overflow-hidden text-navy rounded-[40px]"
+        style={{ background: '#F3F6F8' }}
+      >
+        {/* Status Bar */}
+        <div className="absolute inset-x-0 top-0 z-30 h-[44px]">
+          <div className="absolute h-[11.336px] right-[14.67px] top-[17.33px] w-[66.662px]">
+            <img src="/assets/status-group3.png" alt="" className="h-full w-full" />
+          </div>
+          <div className="absolute h-[21px] left-[21px] top-[13px] w-[54px]">
+            <img src="/assets/status-time.png" alt="" className="h-full w-full" />
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="absolute left-[21px] top-[83px] h-[30px] w-[331px]">
+          <div className="absolute bg-[#EAEFF1] h-[8px] left-[11px] right-0 rounded-[20px] top-1/2 -translate-y-1/2" />
+          <div className="absolute bg-[#29BFC0] h-[8px] left-[11px] right-[275px] rounded-[20px] top-1/2 -translate-y-1/2" />
+        </div>
+
+        {/* Title */}
+        <div className="absolute left-1/2 top-[53px] -translate-x-1/2">
+          <p className="text-[18px] leading-[30px] font-semibold text-[#2C4364] text-center">
+            その調子！
+          </p>
+        </div>
+
+        {/* Question */}
+        <div className="absolute left-[32px] top-[138px] w-[320px]">
+          <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] whitespace-pre-wrap">
+            週末や休日は誰と過ごしますか？(複数回答可)
+          </p>
+        </div>
+
+        {/* Option Buttons */}
+        {/* Row 1 */}
+        <button
+          onClick={() => toggleOption('パートナー')}
+          className={`absolute left-[8%] top-[178px] h-[36px] px-[17px] rounded-[30px] border border-[#969FAB] flex items-center justify-center ${
+            selectedOptions.includes('パートナー')
+              ? 'bg-[#29BFC0] border-[#29BFC0]'
+              : 'bg-transparent'
+          }`}
+        >
+          <p
+            className={`text-[13px] leading-[21px] font-medium text-center whitespace-pre-wrap ${
+              selectedOptions.includes('パートナー') ? 'text-white' : 'text-[#2C4364]'
+            }`}
+          >
+            パートナー
+          </p>
+        </button>
+
+        <button
+          onClick={() => toggleOption('子供')}
+          className={`absolute left-[37.07%] top-[178px] h-[36px] px-[17px] rounded-[30px] border border-[#969FAB] flex items-center justify-center ${
+            selectedOptions.includes('子供')
+              ? 'bg-[#29BFC0] border-[#29BFC0]'
+              : 'bg-transparent'
+          }`}
+        >
+          <p
+            className={`text-[13px] leading-[21px] font-medium text-center whitespace-pre-wrap ${
+              selectedOptions.includes('子供') ? 'text-white' : 'text-[#2C4364]'
+            }`}
+          >
+            子供
+          </p>
+        </button>
+
+        {/* Row 2 */}
+        <button
+          onClick={() => toggleOption('友人')}
+          className={`absolute left-[8.53%] top-[228px] h-[36px] px-[17px] rounded-[30px] border border-[#969FAB] flex items-center justify-center ${
+            selectedOptions.includes('友人')
+              ? 'bg-[#29BFC0] border-[#29BFC0]'
+              : 'bg-transparent'
+          }`}
+        >
+          <p
+            className={`text-[13px] leading-[21px] font-medium text-center whitespace-pre-wrap ${
+              selectedOptions.includes('友人') ? 'text-white' : 'text-[#2C4364]'
+            }`}
+          >
+            友人
+          </p>
+        </button>
+
+        <button
+          onClick={() => toggleOption('親')}
+          className={`absolute left-[37.07%] top-[228px] h-[36px] px-[17px] rounded-[30px] border border-[#969FAB] flex items-center justify-center ${
+            selectedOptions.includes('親')
+              ? 'bg-[#29BFC0] border-[#29BFC0]'
+              : 'bg-transparent'
+          }`}
+        >
+          <p
+            className={`text-[13px] leading-[21px] font-medium text-center whitespace-pre-wrap ${
+              selectedOptions.includes('親') ? 'text-white' : 'text-[#2C4364]'
+            }`}
+          >
+            親
+          </p>
+        </button>
+
+        {/* Next Button */}
+        <div className="absolute left-[25px] top-[704px]">
+          <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+            次へ
+          </button>
+        </div>
+
+        {/* Skip Link */}
+        <div className="absolute left-1/2 top-[780px] w-[279px] -translate-x-1/2">
+          <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center whitespace-pre-wrap">
+            スキップする
+          </p>
+        </div>
+
+        {/* Home Indicator */}
+        <div className="pointer-events-none absolute left-0 top-[778px] z-[999] flex h-[34px] w-[375px] items-end justify-center px-[120px] pb-[9px]">
+          <div className="h-[5px] w-[134px] rounded-full bg-black" />
+        </div>
+      </div>
+    </DeviceFrame>
+  )
+}
+

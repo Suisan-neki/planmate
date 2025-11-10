@@ -5,6 +5,7 @@ type IconName =
   | 'finger'
   | 'close'
   | 'arrow'
+  | 'chevron-down'
   | 'user'
   | 'mail'
   | 'lock'
@@ -19,6 +20,7 @@ const srcMap: Record<IconName, string> = {
   finger: '/assets/icon-finger.svg',
   close: '/assets/icon-close.svg',
   arrow: '/assets/icon-arrow.svg',
+  'chevron-down': '/assets/icon-chevron-down.svg',
   user: '',
   mail: '',
   lock: '',
