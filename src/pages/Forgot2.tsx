@@ -127,7 +127,7 @@ export default function Forgot2() {
             <button
               type="button"
               className="mt-10 h-[50px] w-full rounded-[26px] bg-[rgba(44,67,100,0.1)] text-[16px] font-semibold text-grey shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
-              disabled
+              onClick={() => (window as any).__setDevPage?.('reset1')}
             >
               {t('forgot2.verifyCta')}
             </button>

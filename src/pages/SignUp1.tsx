@@ -132,7 +132,10 @@ export default function SignUp1(){
             </div>
 
             {/* CTA (disabled style) */}
-            <button disabled className="mt-8 h-12 w-full rounded-[24px] bg-grey/20 text-grey/70 text-[14px] font-semibold">
+            <button
+              className="mt-8 h-12 w-full rounded-[24px] bg-grey/20 text-grey/70 text-[14px] font-semibold"
+              onClick={() => (window as any).__setDevPage?.('forgot1')}
+            >
               {t('signup.cta')}
             </button>
 

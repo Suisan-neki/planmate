@@ -38,7 +38,12 @@ export default function Onboarding2(){
           </p>
 
           <div className="mt-[62px] px-[80px] pb-[15px]">
-            <button className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]">{t('onboarding2.cta')}</button>
+            <button
+              className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]"
+              onClick={() => (window as any).__setDevPage?.('onboarding3')}
+            >
+              {t('onboarding2.cta')}
+            </button>
           </div>
         </div>
       </div>

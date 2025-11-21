@@ -159,7 +159,9 @@ export default function AfterEvent1() {
           {/* Next Button */}
           <div className="absolute left-[28px] top-[720px] z-30 h-[50px] w-[327px]">
             <div className="absolute inset-0 bg-[#29BFC0] rounded-[26px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]" />
-            <button className="absolute inset-0 flex items-center justify-center">
+            <button
+              className="absolute inset-0 flex items-center justify-center"
+            >
               <span className="text-[16px] leading-[28px] font-semibold text-white">
                 次へ
               </span>
@@ -168,7 +170,9 @@ export default function AfterEvent1() {
 
           {/* Skip Link */}
           <div className="absolute left-[191.5px] top-[796px] z-30 w-[279px] -translate-x-1/2">
-            <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center">
+            <p
+              className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center cursor-pointer"
+            >
               スキップする
             </p>
           </div>
@@ -227,4 +231,3 @@ export default function AfterEvent1() {
     </DeviceFrame>
   )
 }
-

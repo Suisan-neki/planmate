@@ -56,7 +56,9 @@ export default function AfterEvent2() {
           {/* Home Button */}
           <div className="absolute left-[28px] bottom-[50px] z-30 h-[50px] w-[327px]">
             <div className="absolute bg-[#29BFC0] inset-0 rounded-[26px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]" />
-            <button className="absolute inset-0 flex items-center justify-center">
+            <button
+              className="absolute inset-0 flex items-center justify-center"
+            >
               <span className="text-[16px] leading-[28px] font-semibold text-white">
                 ホームへ
               </span>
@@ -114,4 +116,3 @@ export default function AfterEvent2() {
     </DeviceFrame>
   )
 }
-

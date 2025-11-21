@@ -23,16 +23,16 @@ export default function ProfileSetting9() {
           <div className="absolute bg-[#29BFC0] h-[8px] left-[11px] right-0 rounded-[20px] top-1/2 -translate-y-1/2 z-10" />
         </div>
 
-        {/* Image */}
-        <div className="absolute left-1/2 top-[143px] -translate-x-1/2 -translate-x-[110px] w-[248px] h-[243px]">
-          <img src="/assets/profile-setting9-image.png" alt="" className="w-full h-full object-contain" />
-        </div>
-
-        {/* Title */}
-        <div className="absolute left-1/2 top-[400px] -translate-x-1/2">
+        {/* Title (above the bar) */}
+        <div className="absolute left-1/2 top-[53px] -translate-x-1/2">
           <p className="text-[18px] leading-[30px] font-semibold text-[#2C4364] text-center">
             お疲れさまでした！
           </p>
+        </div>
+
+        {/* Image */}
+        <div className="absolute left-1/2 top-[143px] -translate-x-1/2 -translate-x-[110px] w-[248px] h-[243px]">
+          <img src="/assets/profile-setting9-image.png" alt="" className="w-full h-full object-contain" />
         </div>
 
         {/* Message */}
@@ -44,14 +44,20 @@ export default function ProfileSetting9() {
 
         {/* Home Button */}
         <div className="absolute left-[25px] top-[550px]">
-          <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+          <button
+            className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
+            onClick={() => (window as any).__setDevPage?.('dashboard')}
+          >
             ホーム画面へ
           </button>
         </div>
 
         {/* Profile Setting Button */}
         <div className="absolute left-[25px] top-[620px]">
-          <button className="h-[50px] w-[327px] rounded-[26px] border border-[#969FAB] bg-white text-[#2C4364] text-[16px] font-semibold leading-[28px]">
+          <button
+            className="h-[50px] w-[327px] rounded-[26px] border border-[#969FAB] bg-white text-[#2C4364] text-[16px] font-semibold leading-[28px]"
+            onClick={() => (window as any).__setDevPage?.('dashboard')}
+          >
             プロフィール設定へ
           </button>
         </div>

@@ -100,7 +100,10 @@ export default function EventView8() {
           </div>
 
           {/* Plus button - ellipse shape (59x56) - centered */}
-          <div className="absolute left-1/2 top-[17px] z-40 h-[56px] w-[59px] flex items-center justify-center shadow-[0px_26px_60px_rgba(141,155,170,0.05)]" style={{ left: '50%', transform: 'translateX(-50%)', borderRadius: '50%' }}>
+          <div
+            className="absolute left-1/2 top-[17px] z-40 h-[56px] w-[59px] flex items-center justify-center shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
+            style={{ left: '50%', transform: 'translateX(-50%)', borderRadius: '50%' }}
+          >
             <svg width="59" height="56" viewBox="0 0 59 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0">
               <ellipse cx="29.5" cy="28" rx="29.5" ry="28" fill="#29BFC0"/>
             </svg>
@@ -138,4 +141,3 @@ export default function EventView8() {
     </DeviceFrame>
   )
 }
-

@@ -66,7 +66,9 @@ export default function QuickPlannerButton2() {
 
         {/* Next Button */}
         <div className="absolute left-1/2 top-[312px] w-[327px] h-[50px] -translate-x-1/2">
-          <button className="absolute inset-0 bg-[#29BFC0] rounded-[26px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)] flex items-center justify-center">
+          <button
+            className="absolute inset-0 bg-[#29BFC0] rounded-[26px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)] flex items-center justify-center"
+          >
             <p className="text-[16px] leading-[28px] font-semibold text-white text-center">
               次へ
             </p>

@@ -1,6 +1,11 @@
 import DeviceFrame from '@/components/layout/DeviceFrame'
+import { useState } from 'react'
 
 export default function ProfileSetting2() {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const hasSelection = !!selectedOption
+  const options = ['女性', '男性', 'どちらでもない']
+
   return (
     <DeviceFrame hideHomeIndicator>
       <div
@@ -39,43 +44,49 @@ export default function ProfileSetting2() {
             </p>
           </div>
 
-          {/* Option: 女性 (Selected) */}
-          <div className="absolute left-[24px] top-[177px] z-20">
-            <button className="h-[36px] w-[131px] rounded-[30px] bg-[#29BFC0] border border-[#969FAB] px-[17px] flex items-center justify-center">
-              <span className="text-[13px] leading-[21px] font-bold text-white">
-                女性
-              </span>
-            </button>
-          </div>
-
-          {/* Option: 男性 */}
-          <div className="absolute left-[24px] top-[231px] z-20">
-            <button className="h-[36px] w-[131px] rounded-[30px] bg-white border border-[#969FAB] px-[17px] flex items-center justify-center">
-              <span className="text-[13px] leading-[21px] font-medium text-[#2C4364]">
-                男性
-              </span>
-            </button>
-          </div>
-
-          {/* Option: どちらでもない */}
-          <div className="absolute left-[24px] top-[292px] z-20">
-            <button className="h-[36px] w-[131px] rounded-[30px] bg-white border border-[#969FAB] px-[17px] flex items-center justify-center">
-              <span className="text-[13px] leading-[21px] font-medium text-[#2C4364]">
-                どちらでもない
-              </span>
-            </button>
-          </div>
+          {/* Options */}
+          {options.map((option, idx) => {
+            const isSelected = selectedOption === option
+            const top = 177 + idx * 54
+            return (
+              <div key={option} className="absolute left-[24px] z-20" style={{ top }}>
+                <button
+                  className={`h-[36px] w-[131px] rounded-[30px] border px-[17px] flex items-center justify-center transition-colors ${
+                    isSelected ? 'bg-[#29BFC0] border-[#29BFC0]' : 'bg-white border-[#969FAB]'
+                  }`}
+                  onClick={() => setSelectedOption(option)}
+                >
+                  <span
+                    className={`text-[13px] leading-[21px] text-center ${
+                      isSelected ? 'font-bold text-white' : 'font-medium text-[#2C4364]'
+                    }`}
+                  >
+                    {option}
+                  </span>
+                </button>
+              </div>
+            )
+          })}
 
           {/* Next Button */}
           <div className="absolute left-[25px] top-[674px] z-30">
-            <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+            <button
+              disabled={!hasSelection}
+              className={`h-[50px] w-[327px] rounded-[26px] text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)] ${
+                hasSelection ? 'bg-[#29BFC0] text-white' : 'bg-[rgba(44,67,100,0.1)] text-grey cursor-not-allowed'
+              }`}
+              onClick={() => hasSelection && (window as any).__setDevPage?.('profileSetting3')}
+            >
               次へ
             </button>
           </div>
 
           {/* Skip Link */}
           <div className="absolute left-1/2 top-[750px] z-20 w-[279px] -translate-x-1/2">
-            <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center">
+            <p
+              className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center cursor-pointer"
+              onClick={() => (window as any).__setDevPage?.('profileSetting3')}
+            >
               スキップする
             </p>
           </div>
@@ -89,4 +100,3 @@ export default function ProfileSetting2() {
     </DeviceFrame>
   )
 }
-

@@ -188,7 +188,9 @@ export default function EventView2() {
             </div>
 
             {/* Confirm Button */}
-            <button className="mt-[10px] h-[50px] w-full rounded-[26px] bg-[#00C3D0] text-[16px] font-semibold leading-[28px] text-white shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+            <button
+              className="mt-[10px] h-[50px] w-full rounded-[26px] bg-[#00C3D0] text-[16px] font-semibold leading-[28px] text-white shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
+            >
               {t('eventView.confirmButton')}
             </button>
 

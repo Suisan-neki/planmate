@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Icon from '@/components/atoms/Icon'
 
 export default function ProfileSetting6() {
-  const [gender, setGender] = useState<string>('女性')
+  const [gender, setGender] = useState<string>('')
   const [relationship, setRelationship] = useState<string>('パートナー')
 
   return (
@@ -85,7 +85,7 @@ export default function ProfileSetting6() {
               }`}
             >
               <p
-                className={`text-[14px] leading-[21px] font-bold text-center whitespace-nowrap ${
+                className={`text-[14px] leading-[21px] font-medium text-center whitespace-nowrap ${
                   gender === '女性' ? 'text-white' : 'text-[#2C4364]'
                 }`}
               >
@@ -210,14 +210,20 @@ export default function ProfileSetting6() {
 
         {/* Next Button */}
         <div className="absolute left-[25px] top-[674px]">
-          <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+          <button
+            className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
+            onClick={() => (window as any).__setDevPage?.('profileSetting7')}
+          >
             次へ
           </button>
         </div>
 
         {/* Skip Link */}
         <div className="absolute left-1/2 top-[750px] w-[279px] -translate-x-1/2">
-          <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center whitespace-pre-wrap">
+          <p
+            className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center whitespace-pre-wrap cursor-pointer"
+            onClick={() => (window as any).__setDevPage?.('profileSetting7')}
+          >
             スキップする
           </p>
         </div>
@@ -230,4 +236,3 @@ export default function ProfileSetting6() {
     </DeviceFrame>
   )
 }
-

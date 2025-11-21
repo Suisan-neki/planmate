@@ -62,14 +62,20 @@ export default function ProfileSetting1() {
 
           {/* Next Button */}
           <div className="absolute left-[24px] top-[676px] z-30">
-            <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+            <button
+              className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
+              onClick={() => (window as any).__setDevPage?.('profileSetting2')}
+            >
               次へ
             </button>
           </div>
 
           {/* Skip Link */}
           <div className="absolute left-1/2 top-[752px] z-20 w-[279px] -translate-x-1/2">
-            <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center">
+            <p
+              className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center cursor-pointer"
+              onClick={() => (window as any).__setDevPage?.('profileSetting2')}
+            >
               スキップして後で設定する
             </p>
           </div>
@@ -83,4 +89,3 @@ export default function ProfileSetting1() {
     </DeviceFrame>
   )
 }
-

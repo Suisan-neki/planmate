@@ -42,31 +42,110 @@ import EventView8 from '@/pages/EventView8'
 
 type PageKey = string
 
+const PAGE_LANG_MAP: Record<PageKey, Array<'ja' | 'en'>> = {
+  splash: ['ja', 'en'],
+  onboarding: ['ja', 'en'],
+  onboarding2: ['ja', 'en'],
+  onboarding3: ['ja', 'en'],
+  signUp1: ['ja', 'en'],
+  forgot1: ['ja', 'en'],
+  forgot2: ['ja', 'en'],
+  reset1: ['ja', 'en'],
+  fingerprint1: ['en'],
+  profileSetting1: ['ja'],
+  profileSetting2: ['ja'],
+  profileSetting3: ['ja'],
+  profileSetting4: ['ja'],
+  profileSetting5: ['ja'],
+  profileSetting6: ['ja'],
+  profileSetting7: ['ja'],
+  profileSetting8: ['ja'],
+  profileSetting9: ['ja'],
+  dashboard: ['ja'],
+  eventView1: ['ja'],
+  eventView2: ['ja'],
+  eventView3: ['ja'],
+  eventView4: ['ja'],
+  eventView5: ['ja'],
+  eventView6: ['ja'],
+  eventView7: ['ja'],
+  eventView8: ['ja'],
+  afterEvent1: ['ja'],
+  afterEvent2: ['ja'],
+  calendarView1: ['ja'],
+  calendarView2: ['ja'],
+  calendarView3: ['ja'],
+  quickPlannerButton1: ['en'],
+  quickPlannerButton2: ['ja'],
+  profilePersonalSettingView1: ['ja'],
+  projectsYouAreIn1: ['en'],
+  projectsYouAreIn2: ['en'],
+}
+
+const ALL_PAGES: PageKey[] = [
+  'splash',
+  'onboarding',
+  'onboarding2',
+  'onboarding3',
+  'signUp1',
+  'forgot1',
+  'forgot2',
+  'reset1',
+  'fingerprint1',
+  'profileSetting1',
+  'profileSetting2',
+  'profileSetting3',
+  'profileSetting4',
+  'profileSetting5',
+  'profileSetting6',
+  'profileSetting7',
+  'profileSetting8',
+  'profileSetting9',
+  'dashboard',
+  'eventView1',
+  'eventView2',
+  'eventView3',
+  'eventView4',
+  'eventView5',
+  'eventView6',
+  'eventView7',
+  'eventView8',
+  'afterEvent1',
+  'afterEvent2',
+  'calendarView1',
+  'calendarView2',
+  'calendarView3',
+  'quickPlannerButton1',
+  'quickPlannerButton2',
+  'profilePersonalSettingView1',
+  'projectsYouAreIn1',
+  'projectsYouAreIn2',
+]
+
+const KNOWN_PAGES = new Set<PageKey>(ALL_PAGES)
+
+function isPageAvailableInLang(page: PageKey, lang: 'ja' | 'en') {
+  return (PAGE_LANG_MAP[page] ?? ['ja', 'en']).includes(lang)
+}
+
+function firstAvailablePage(lang: 'ja' | 'en'): PageKey {
+  return ALL_PAGES.find((p) => isPageAvailableInLang(p, lang)) ?? 'splash'
+}
+
 export default function App() {
   const [page, setPage] = useState<PageKey>(() => (localStorage.getItem('dev_page') as PageKey) || 'splash')
   const { i18n } = useTranslation()
-  const knownPages = new Set<PageKey>([
-    'splash','onboarding','onboarding2','onboarding3',
-    'signUp1',
-    'forgot1','forgot2',
-    'reset1',
-    'fingerprint1',
-    'profileSetting1','profileSetting2','profileSetting3','profileSetting4','profileSetting5','profileSetting6','profileSetting7','profileSetting8','profileSetting9',
-    'dashboard',
-    'eventView1','eventView2','eventView3','eventView4','eventView5','eventView6','eventView7','eventView8',
-    'afterEvent1','afterEvent2',
-    'calendarView1','calendarView2','calendarView3',
-    'quickPlannerButton1','quickPlannerButton2',
-    'profilePersonalSettingView1',
-    'projectsYouAreIn1','projectsYouAreIn2'
-  ])
-  const activePage: PageKey = knownPages.has(page) ? page : 'splash'
+  const lang = (i18n.language?.startsWith('en') ? 'en' : 'ja') as 'ja' | 'en'
+  const fallbackPage = firstAvailablePage(lang)
+  const activePage: PageKey =
+    KNOWN_PAGES.has(page) && isPageAvailableInLang(page, lang) ? page : fallbackPage
 
   useEffect(() => { localStorage.setItem('dev_page', page) }, [page])
   useEffect(() => {
-    if (!knownPages.has(page)) setPage('splash')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    if (!KNOWN_PAGES.has(page) || !isPageAvailableInLang(page, lang)) {
+      setPage(fallbackPage)
+    }
+  }, [page, lang, fallbackPage])
   useEffect(() => {
     ;(window as any).__setDevPage = (p: PageKey) => setPage(p)
     return () => { try { delete (window as any).__setDevPage } catch {} }
@@ -79,8 +158,9 @@ export default function App() {
         className="mb-4 md:hidden"
         page={activePage}
         onChange={setPage}
-        lang={i18n.language as 'ja' | 'en'}
+        lang={lang}
         onLang={(lng) => i18n.changeLanguage(lng)}
+        isAvailable={(k) => isPageAvailableInLang(k, lang)}
       />
 
       <div className="mx-auto flex max-w-[1200px] items-start justify-center gap-6">
@@ -127,8 +207,9 @@ export default function App() {
         <DevSidebar
           page={activePage}
           onChange={setPage}
-          lang={i18n.language as 'ja' | 'en'}
+          lang={lang}
           onLang={(lng) => i18n.changeLanguage(lng)}
+          isAvailable={(k) => isPageAvailableInLang(k, lang)}
         />
       </div>
     </div>
@@ -140,11 +221,13 @@ function DevSidebar({
   onChange,
   lang,
   onLang,
+  isAvailable,
 }: {
   page: PageKey
   onChange: (p: PageKey) => void
   lang: 'ja' | 'en'
   onLang: (l: 'ja' | 'en') => void
+  isAvailable: (p: PageKey) => boolean
 }) {
   const NavButton = ({ k, label }: { k: PageKey; label: string }) => (
     <button
@@ -154,72 +237,109 @@ function DevSidebar({
       {label}
     </button>
   )
+
+  const sections = [
+    {
+      title: 'Pages',
+      headingClass: 'text-xs mb-1 text-black/60',
+      items: [
+        { key: 'splash', label: 'Splash' },
+        { key: 'onboarding', label: 'Onboarding 1' },
+        { key: 'onboarding2', label: 'Onboarding 2' },
+        { key: 'onboarding3', label: 'Onboarding 3' },
+      ],
+    },
+    { title: 'Sign Up', items: [{ key: 'signUp1', label: 'Sign Up 1' }] },
+    {
+      title: 'Forgot Password',
+      items: [
+        { key: 'forgot1', label: 'Forgot 1' },
+        { key: 'forgot2', label: 'Forgot 2' },
+      ],
+    },
+    { title: 'Reset Password', items: [{ key: 'reset1', label: 'Reset 1' }] },
+    { title: 'Fingerprint Login', items: [{ key: 'fingerprint1', label: 'Fingerprint 1' }] },
+    {
+      title: 'Profile Setting',
+      items: [
+        { key: 'profileSetting1', label: 'Profile Setting 1' },
+        { key: 'profileSetting2', label: 'Profile Setting 2' },
+        { key: 'profileSetting3', label: 'Profile Setting 3' },
+        { key: 'profileSetting4', label: 'Profile Setting 4' },
+        { key: 'profileSetting5', label: 'Profile Setting 5' },
+        { key: 'profileSetting6', label: 'Profile Setting 6' },
+        { key: 'profileSetting7', label: 'Profile Setting 7' },
+        { key: 'profileSetting8', label: 'Profile Setting 8' },
+        { key: 'profileSetting9', label: 'Profile Setting 9' },
+      ],
+    },
+    { title: 'App', items: [{ key: 'dashboard', label: 'Home' }] },
+    {
+      title: 'Event View',
+      items: [
+        { key: 'eventView1', label: 'Event View 1' },
+        { key: 'eventView2', label: 'Event View 2' },
+        { key: 'eventView3', label: 'Event View 3' },
+        { key: 'eventView4', label: 'Event View 4' },
+        { key: 'eventView5', label: 'Event View 5' },
+        { key: 'eventView6', label: 'Event View 6' },
+        { key: 'eventView7', label: 'Event View 7' },
+        { key: 'eventView8', label: 'Event View 8' },
+      ],
+    },
+    {
+      title: 'After Event',
+      items: [
+        { key: 'afterEvent1', label: 'After Event 1' },
+        { key: 'afterEvent2', label: 'After Event 2' },
+      ],
+    },
+    {
+      title: 'Calendar View',
+      items: [
+        { key: 'calendarView1', label: 'Calendar View 1' },
+        { key: 'calendarView2', label: 'Calendar View 2' },
+        { key: 'calendarView3', label: 'Calendar View 3' },
+      ],
+    },
+    {
+      title: 'Quick Planner Button',
+      items: [
+        { key: 'quickPlannerButton1', label: 'Quick Planner Button 1' },
+        { key: 'quickPlannerButton2', label: 'Quick Planner Button 2' },
+      ],
+    },
+    {
+      title: 'Profile Personal Setting View',
+      items: [{ key: 'profilePersonalSettingView1', label: 'Profile Personal Setting View 1' }],
+    },
+    {
+      title: 'Projects You Are In (EN only)',
+      items: [
+        { key: 'projectsYouAreIn1', label: 'Projects You Are In 1' },
+        { key: 'projectsYouAreIn2', label: 'Projects You Are In 2' },
+      ],
+    },
+  ]
+
+  const visibleSections = sections
+    .map((section) => ({
+      ...section,
+      items: section.items.filter((item) => isAvailable(item.key)),
+    }))
+    .filter((section) => section.items.length > 0)
+
   return (
     <aside className="sticky top-6 hidden w-[240px] shrink-0 flex-col gap-2 rounded-xl border border-[var(--pm-border)] bg-white/90 p-3 shadow-sm backdrop-blur md:flex">
-      <div className="text-xs mb-1 text-black/60">Pages</div>
-      <NavButton k="splash" label="Splash" />
-      <NavButton k="onboarding" label="Onboarding 1" />
-      <NavButton k="onboarding2" label="Onboarding 2" />
-      <NavButton k="onboarding3" label="Onboarding 3" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Sign Up</div>
-      <NavButton k="signUp1" label="Sign Up 1" />
-      
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Forgot Password</div>
-      <NavButton k="forgot1" label="Forgot 1" />
-      <NavButton k="forgot2" label="Forgot 2" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Reset Password</div>
-      <NavButton k="reset1" label="Reset 1" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Fingerprint Login</div>
-      <NavButton k="fingerprint1" label="Fingerprint 1" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Profile Setting</div>
-      <NavButton k="profileSetting1" label="Profile Setting 1" />
-      <NavButton k="profileSetting2" label="Profile Setting 2" />
-      <NavButton k="profileSetting3" label="Profile Setting 3" />
-      <NavButton k="profileSetting4" label="Profile Setting 4" />
-      <NavButton k="profileSetting5" label="Profile Setting 5" />
-      <NavButton k="profileSetting6" label="Profile Setting 6" />
-      <NavButton k="profileSetting7" label="Profile Setting 7" />
-      <NavButton k="profileSetting8" label="Profile Setting 8" />
-      <NavButton k="profileSetting9" label="Profile Setting 9" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">App</div>
-      <NavButton k="dashboard" label="Home" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Event View</div>
-      <NavButton k="eventView1" label="Event View 1" />
-      <NavButton k="eventView2" label="Event View 2" />
-      <NavButton k="eventView3" label="Event View 3" />
-      <NavButton k="eventView4" label="Event View 4" />
-      <NavButton k="eventView5" label="Event View 5" />
-      <NavButton k="eventView6" label="Event View 6" />
-      <NavButton k="eventView7" label="Event View 7" />
-      <NavButton k="eventView8" label="Event View 8" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">After Event</div>
-      <NavButton k="afterEvent1" label="After Event 1" />
-      <NavButton k="afterEvent2" label="After Event 2" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Calendar View</div>
-      <NavButton k="calendarView1" label="Calendar View 1" />
-      <NavButton k="calendarView2" label="Calendar View 2" />
-      <NavButton k="calendarView3" label="Calendar View 3" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Quick Planner Button</div>
-      <NavButton k="quickPlannerButton1" label="Quick Planner Button 1" />
-      <NavButton k="quickPlannerButton2" label="Quick Planner Button 2" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Profile Personal Setting View</div>
-      <NavButton k="profilePersonalSettingView1" label="Profile Personal Setting View 1" />
-      <div className="my-1 h-px bg-black/10" />
-      <div className="text-[11px] text-black/50">Projects You Are In (EN only)</div>
-      <NavButton k="projectsYouAreIn1" label="Projects You Are In 1" />
-      <NavButton k="projectsYouAreIn2" label="Projects You Are In 2" />
-      <div className="my-2 h-px w-full bg-black/10" />
+      {visibleSections.map((section, idx) => (
+        <div key={section.title}>
+          <div className={section.headingClass ?? 'text-[11px] text-black/50'}>{section.title}</div>
+          {section.items.map((item) => (
+            <NavButton key={item.key} k={item.key} label={item.label} />
+          ))}
+          <div className={`${idx === visibleSections.length - 1 ? 'my-2' : 'my-1'} h-px w-full bg-black/10`} />
+        </div>
+      ))}
       <div className="text-xs mb-1 text-black/60">Language</div>
       <div className="flex overflow-hidden rounded-md border border-[var(--pm-border)]">
         <button
@@ -246,12 +366,14 @@ function DevToolbar({
   onChange,
   lang,
   onLang,
+  isAvailable,
 }: {
   className?: string
   page: PageKey
   onChange: (p: PageKey) => void
   lang: 'ja' | 'en'
   onLang: (l: 'ja' | 'en') => void
+  isAvailable: (p: PageKey) => boolean
 }) {
   const Tab = ({ k, label }: { k: PageKey; label: string }) => (
     <button
@@ -261,11 +383,18 @@ function DevToolbar({
       {label}
     </button>
   )
+
+  const tabs = [
+    { k: 'splash' as PageKey, label: 'Splash' },
+    { k: 'onboarding' as PageKey, label: 'Onboarding' },
+    { k: 'dashboard' as PageKey, label: 'Dashboard' },
+  ].filter((tab) => isAvailable(tab.k))
+
   return (
     <div className={`flex items-center gap-2 overflow-x-auto rounded-xl border border-[var(--pm-border)] bg-white/90 p-2 shadow-sm backdrop-blur ${className}`}>
-      <Tab k="splash" label="Splash" />
-      <Tab k="onboarding" label="Onboarding" />
-      <Tab k="dashboard" label="Dashboard" />
+      {tabs.map((tab) => (
+        <Tab key={tab.k} k={tab.k} label={tab.label} />
+      ))}
       <div className="mx-2 h-4 w-px bg-black/10" />
       <div className="flex overflow-hidden rounded-md border border-[var(--pm-border)]">
         <button

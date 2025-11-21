@@ -41,7 +41,12 @@ export default function Onboarding(){
 
           {/* CTA: テキストから62px下、左右80px、下15px */}
           <div className="mt-[62px] px-[80px] pb-[15px]">
-            <button className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]">{t('onboarding1.cta')}</button>
+            <button
+              className="h-12 w-full rounded-[24px] bg-primary text-white text-[14px]"
+              onClick={() => (window as any).__setDevPage?.('onboarding2')}
+            >
+              {t('onboarding1.cta')}
+            </button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export default function ProfileSetting5() {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+  const hasSelection = selectedOptions.length > 0
 
   const toggleOption = (option: string) => {
     setSelectedOptions((prev) =>
@@ -119,14 +120,23 @@ export default function ProfileSetting5() {
 
         {/* Next Button */}
         <div className="absolute left-[25px] top-[674px]">
-          <button className="h-[50px] w-[327px] rounded-[26px] bg-[#29BFC0] text-white text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)]">
+          <button
+            disabled={!hasSelection}
+            className={`h-[50px] w-[327px] rounded-[26px] text-[16px] font-semibold leading-[28px] shadow-[0px_26px_60px_rgba(141,155,170,0.05)] ${
+              hasSelection ? 'bg-[#29BFC0] text-white' : 'bg-[rgba(44,67,100,0.1)] text-grey cursor-not-allowed'
+            }`}
+            onClick={() => hasSelection && (window as any).__setDevPage?.('profileSetting6')}
+          >
             次へ
           </button>
         </div>
 
         {/* Skip Link */}
         <div className="absolute left-1/2 top-[750px] w-[279px] -translate-x-1/2">
-          <p className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center whitespace-pre-wrap">
+          <p
+            className="text-[14px] leading-[26px] font-normal text-[rgba(44,67,100,0.6)] text-center whitespace-pre-wrap cursor-pointer"
+            onClick={() => (window as any).__setDevPage?.('profileSetting6')}
+          >
             スキップする
           </p>
         </div>
@@ -139,4 +149,3 @@ export default function ProfileSetting5() {
     </DeviceFrame>
   )
 }
-
