@@ -45,7 +45,6 @@ export default function SignUp() {
                 type="email"
                 placeholder={isJa ? (t('signup.placeholderEmail') as string) : (t('signup.placeholderEmailEn') as string)}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -56,7 +55,6 @@ export default function SignUp() {
                 type="text"
                 placeholder={isJa ? (t('signup.placeholderUsername') as string) : (t('signup.placeholderUsernameEn') as string)}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
             <div className="mt-2 flex items-center gap-2 pl-2 text-[11px] leading-[20px] text-dark/60">
@@ -71,7 +69,6 @@ export default function SignUp() {
                 type="password"
                 placeholder={isJa ? (t('signup.placeholderPassword') as string) : (t('signup.placeholderPasswordEn') as string)}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -82,13 +79,11 @@ export default function SignUp() {
                 type="password"
                 placeholder={isJa ? (t('signup.placeholderPasswordConfirm') as string) : (t('signup.placeholderPasswordConfirmEn') as string)}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
             {/* CTA (disabled style) */}
             <button
-              disabled
               className="mt-[32px] h-[50px] w-full rounded-[26px] bg-[rgba(44,67,100,0.1)] text-[16px] font-semibold leading-[28px] text-grey shadow-[0px_26px_60px_rgba(141,155,170,0.05)]"
             >
               {isJa ? (t('signup.cta') as string) : (t('signup.ctaEn') as string)}

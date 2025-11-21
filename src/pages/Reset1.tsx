@@ -107,7 +107,6 @@ export default function Reset1() {
                 type="password"
                 placeholder={t('reset1.placeholderPassword') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -117,7 +116,6 @@ export default function Reset1() {
                 type="password"
                 placeholder={t('reset1.placeholderPasswordConfirm') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 

@@ -48,7 +48,6 @@ export default function Forgot() {
                 type="email"
                 placeholder={t('forgot.placeholderEmail') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -58,7 +57,6 @@ export default function Forgot() {
                 type="text"
                 placeholder={t('forgot.placeholderUsername') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 

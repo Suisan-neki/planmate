@@ -114,7 +114,6 @@ export default function Forgot1() {
                 type="email"
                 placeholder={t('forgot.placeholderEmail') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -124,7 +123,6 @@ export default function Forgot1() {
                 type="text"
                 placeholder={t('forgot.placeholderUsername') as string}
                 className="flex-1 bg-transparent text-[14px] leading-[26px] text-navy placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 

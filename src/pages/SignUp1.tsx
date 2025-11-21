@@ -90,7 +90,6 @@ export default function SignUp1(){
                 type="email"
                 placeholder={t('signup.placeholderEmail') as string}
                 className="flex-1 bg-transparent text-[14px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -101,7 +100,6 @@ export default function SignUp1(){
                 type="text"
                 placeholder={t('signup.placeholderUsername') as string}
                 className="flex-1 bg-transparent text-[14px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
             <div className="mt-2 pl-2 text-[11px] leading-[18px] text-grey">
@@ -116,7 +114,6 @@ export default function SignUp1(){
                 type="password"
                 placeholder={t('signup.placeholderPassword') as string}
                 className="flex-1 bg-transparent text-[14px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
@@ -127,7 +124,6 @@ export default function SignUp1(){
                 type="password"
                 placeholder={t('signup.placeholderPasswordConfirm') as string}
                 className="flex-1 bg-transparent text-[14px] placeholder:text-grey/60 focus:outline-none"
-                readOnly
               />
             </div>
 
